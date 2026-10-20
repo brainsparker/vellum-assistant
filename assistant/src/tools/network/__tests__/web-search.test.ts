@@ -1693,6 +1693,21 @@ describe("web_search tool", () => {
     expect(result.isError).toBe(true);
   });
 
+  test("You.com is not picked as a fallback even when a You.com key is stored", async () => {
+    seedWebSearch("your-own", "brave");
+    mockYouSecureKey = "ydc_test";
+    const calledUrls: string[] = [];
+    globalThis.fetch = (async (url: string) => {
+      calledUrls.push(String(url));
+      return new Response(JSON.stringify(youResponseBody), { status: 200 });
+    }) as any;
+
+    const result = await execute({ query: "test" });
+
+    expect(calledUrls.some((u) => u.includes("you.com"))).toBe(false);
+    expect(result.isError).toBe(true);
+  });
+
   // ---- Provider fallback --------------------------------------------------
 
   test("falls back from perplexity to brave when perplexity has no key", async () => {

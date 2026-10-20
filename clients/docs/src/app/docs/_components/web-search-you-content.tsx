@@ -52,7 +52,7 @@ export function WebSearchYouContent() {
               tier (100 searches a day, counted per IP address).
             </li>
             <li>
-              Optional: a You.com API key for higher limits. Create one at
+              Optional: a You.com API key for higher limits. Create one at{" "}
               <Link
                 href="https://you.com/platform"
                 target="_blank"
@@ -115,11 +115,11 @@ assistant keys set you <your-you-api-key>`}
             </pre>
           </div>
           <p className="mb-0 text-zinc-600 dark:text-zinc-400">
-            The CLI also reads the key from the
+            The CLI also reads the key from the{" "}
             <code className="rounded bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 font-mono text-xs text-zinc-800 dark:text-zinc-200">
               YDC_API_KEY
-            </code>
-            environment variable. Remove a stored key with
+            </code>{" "}
+            environment variable. Remove a stored key with{" "}
             <code className="rounded bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 font-mono text-xs text-zinc-800 dark:text-zinc-200">
               assistant keys delete you
             </code>
@@ -146,18 +146,18 @@ assistant keys set you <your-you-api-key>`}
             <li>
               <strong>Fallback behavior.</strong> You.com runs only when you
               select it. Because it works without a key, it is never picked
-              automatically as a fallback for another provider. See the
+              automatically as a fallback for another provider. See the{" "}
               <Link
                 href="/docs/key-concepts/web-search"
                 className="text-emerald-700 underline hover:text-emerald-800"
               >
                 Web Search
-              </Link>
+              </Link>{" "}
               page for the full fallback rules.
             </li>
             <li>
               <strong>Privacy.</strong> Search queries leave your assistant and
-              reach You.com servers. Review the
+              reach You.com servers. Review the{" "}
               <Link
                 href="https://you.com/legal/privacy"
                 target="_blank"
@@ -165,7 +165,7 @@ assistant keys set you <your-you-api-key>`}
                 className="text-emerald-700 underline hover:text-emerald-800"
               >
                 You.com privacy policy
-              </Link>
+              </Link>{" "}
               for details.
             </li>
           </ul>

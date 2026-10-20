@@ -109,6 +109,11 @@ interface WebSearchAdapter {
    * with an empty API key instead of erroring on a missing key.
    */
   readonly keyless?: boolean;
+  /**
+   * Provider that runs only when the user explicitly selects it. It is
+   * excluded from the missing-key fallback chain even when a key is stored.
+   */
+  readonly explicitOnly?: boolean;
   /** Execute one search against the provider's API. */
   execute(args: WebSearchAdapterArgs): Promise<ToolExecutionResult>;
 }
@@ -283,7 +288,8 @@ function fallbackProvidersFor(
   provider: WebSearchProvider,
 ): readonly WebSearchProvider[] {
   return WEB_SEARCH_FALLBACK_ORDER.filter(
-    (candidate) => candidate !== provider,
+    (candidate) =>
+      candidate !== provider && !WEB_SEARCH_ADAPTERS[candidate].explicitOnly,
   );
 }
 
@@ -2579,6 +2585,8 @@ const youSearchAdapter: WebSearchAdapter = {
   providerKeyName: "you",
   fallbackOrder: 11,
   keyless: true,
+  // You.com runs only when selected; never as a fallback for another provider.
+  explicitOnly: true,
   execute: ({ query, count, freshness, apiKey, signal }) =>
     executeYouSearch(query, count, freshness, apiKey, signal),
 };
